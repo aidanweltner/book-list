@@ -27,10 +27,10 @@ class BookFactory extends Factory
             'description'   => $this->faker->paragraph(3),
             'image'         => 'https://source.unsplash.com/featured/?sig='. $this->faker->randomDigit .'&book',
             'review'        => $this->faker->paragraph(7),
-            'rating'        => $this->faker->numberBetween(0, 6),
+            'rating'        => $this->faker->numberBetween(2, 6),
             'purchase'      => $this->faker->url,
             'amazon'        => $this->faker->url,
-            'completed'     => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+            'completed'     => $this->faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
         ];
     }
 }

@@ -16,8 +16,8 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="bg-yellow-100">
+    <body class="font-sans antialiased bg-yellow-100">
+        <div class="">
             {{-- @include('layouts.navigation') --}}
 
             <!-- Page Heading -->
