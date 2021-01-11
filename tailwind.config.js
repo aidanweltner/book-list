@@ -8,6 +8,9 @@ module.exports = {
             colors: {
                 gray: colors.warmGray,
                 yellow: colors.amber,
+            },
+            minHeight: {
+                60: '15rem',
             }
         },
     },

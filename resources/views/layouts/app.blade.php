@@ -28,7 +28,7 @@
             </header> --}}
 
             <!-- Page Content -->
-            <main class="max-w-screen-lg mx-auto flex items-center min-h-screen sm:px-6 lg:px-8">
+            <main class="max-w-screen-lg mx-auto min-h-screen px-2 sm:px-6 lg:px-8 py-8 lg:py-16">
                 {{ $slot }}
             </main>
         </div>
