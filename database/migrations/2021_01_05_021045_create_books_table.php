@@ -17,6 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('slug', 50);
             $table->string('title');
+            $table->string('author');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->longText('review');
