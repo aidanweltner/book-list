@@ -15,7 +15,7 @@ class BookController extends Controller
     public function index()
     {
         return view('all', [
-            'books' => Book::all(),
+            'books' => Book::all()->sortByDesc('completed'),
         ]);
     }
 

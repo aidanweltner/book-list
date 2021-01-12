@@ -24,7 +24,7 @@ class CreateBooksTable extends Migration
             $table->tinyInteger('rating')->nullable();
             $table->string('purchase')->nullable();
             $table->string('amazon')->nullable();
-            $table->date('completed')->nullable();
+            $table->timestamp('completed')->nullable();
             $table->timestamps();
         });
     }
