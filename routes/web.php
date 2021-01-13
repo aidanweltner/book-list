@@ -17,6 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/book/create', function () {
+        return view('book/create');
+    });
+    Route::post('/book', 'App\Http\Controllers\BookController@store');
+});
+
 Route::get('/all', 'App\Http\Controllers\BookController@index')->name('all');
 
 Route::get('/dashboard', function () {

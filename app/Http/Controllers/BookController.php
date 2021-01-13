@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BookController extends Controller
 {
@@ -37,7 +38,33 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'title'         => 'required|unique:books',
+            'author'        => 'required',
+            'description'   => 'required|max:280',
+            'completed'     => 'required|date',
+            'rating'        => 'required|numeric|max:5',
+            'review'        => 'required',
+            'purchase'      => 'nullable|url',
+            'amazon'        => 'nullable|url',
+        ]);
+
+        $slug = Str::slug($attributes['title'], '-');
+
+        Book::create([
+            'slug'          => $slug,
+            'title'         => $attributes['title'],
+            'author'        => $attributes['author'],
+            'description'   => $attributes['description'],
+            'image'         => 'https://source.unsplash.com/featured/?sig='.strval(rand(100, 400)).'&book',
+            'completed'     => $attributes['completed'],
+            'rating'        => $attributes['rating'],
+            'review'        => $attributes['review'],
+            'purchase'      => $attributes['purchase'],
+            'amazon'        => $attributes['amazon'],
+        ]);
+
+        return redirect()->route('all');
     }
 
     /**
