@@ -79,13 +79,19 @@
         @enderror
       </div>
 
-      <div class="mt-6 max-w-screen-sm">
+      <div class="mt-6 max-w-screen-sm flex space-x-2">
         <x-button class="">
           {{ __('Create') }}
           <svg class="h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
           </svg>
         </x-button>
+        <button class="px-4 py-2 rounded-md hover:bg-gray-300 focus:bg-gray-300 inline-flex items-center">
+          <a href="/all">{{ __('Cancel') }}</a>
+          <svg class="h-4 w-4 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
       </div>
     </form>
   </div>

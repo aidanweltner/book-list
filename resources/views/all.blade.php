@@ -12,13 +12,13 @@
             <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
-            <a href="/book/create">New Book</a>
+            <a href="/book/create">{{__('New Book')}}</a>
           </button>
           <button class="px-4 py-2 bg-yellow-200 rounded-md border-r-2 border-b-2 border-yellow-300 hover:bg-yellow-300 focus:bg-yellow-300 inline-flex items-center">
             <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
             </svg>
-            <a href="/logout">Logout</a>
+            <a href="/logout">{{__('Logout')}}</a>
           </button>
         </div>
       @endauth

@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/book', 'App\Http\Controllers\BookController@store');
 });
 
+Route::get('/book/{book:slug}', 'App\Http\Controllers\BookController@show')->name('book');
+
 Route::get('/all', 'App\Http\Controllers\BookController@index')->name('all');
 
 Route::get('/dashboard', function () {
