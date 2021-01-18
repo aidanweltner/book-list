@@ -38,16 +38,21 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
+        $customMessages = [
+            '*.review.required' => 'A review is required',
+        ];
+
         $attributes = $request->validate([
-            'title'         => 'required|unique:books',
-            'author'        => 'required',
-            'description'   => 'required|max:280',
-            'completed'     => 'required|date',
-            'rating'        => 'required|numeric|max:5',
-            'review'        => 'required',
-            'purchase'      => 'nullable|url',
-            'amazon'        => 'nullable|url',
-        ]);
+            'title'             => 'required|unique:books',
+            'author'            => 'required',
+            'description'       => 'required|max:280',
+            'completed'         => 'required|date',
+            'rating'            => 'required|numeric|max:5',
+            'book-trixFields'   => 'array|required',
+            '*.review'          => 'required',
+            'purchase'          => 'nullable|url',
+            'amazon'            => 'nullable|url',
+        ], $customMessages);
 
         $slug = Str::slug($attributes['title'], '-');
 
@@ -59,7 +64,7 @@ class BookController extends Controller
             'image'         => 'https://source.unsplash.com/featured/?sig='.strval(rand(100, 400)).'&book',
             'completed'     => $attributes['completed'],
             'rating'        => $attributes['rating'],
-            'review'        => $attributes['review'],
+            'review'        => $attributes['book-trixFields']['review'],
             'purchase'      => $attributes['purchase'],
             'amazon'        => $attributes['amazon'],
         ]);
