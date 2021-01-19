@@ -30,7 +30,7 @@
       <div class="mt-2 max-w-screen-sm">
         <x-label for="description" :value="__('Description')" />
         <textarea
-          class="rounded-md shadow-sm bg-yellow-50 border-gray-300 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 block mt-1 w-full"
+          class="rounded-md shadow-sm bg-white border-gray-300 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-50 block mt-1 w-full"
           name="description" id="description" rows="3" autofocus>{{ old('description') ?? '' }}</textarea>
         @error('description')
           <p class="text-yellow-900">{{ $message }}</p>
@@ -55,14 +55,21 @@
 
       <div class="mt-2 max-w-screen-sm">
         <x-label for="review" :value="__('Review')" />
-        <div class="bg-yellow-50 rounded-md p-2">
-          @trix( \App\Book::class, 'review', [
-            'hideButtonIcons' => ['attach',],
-          ])
-        </div>
-        @error('*.review')
+        <textarea
+          class="block mt-1 w-full"
+          name="review" id="review" rows="7"autofocus>{{ old('review') ?? '' }}</textarea>
+        @error('review')
           <p class="text-yellow-900">{{ $message }}</p>
         @enderror
+        <script src="{{ asset('js/tinymce/tinymce.js') }}"></script>
+        <script>
+          tinymce.init({
+              selector:'textarea#review',
+              width: '100%',
+              height: 640,
+              menubar: false,
+          });
+        </script>
       </div>
 
       <div class="mt-2 max-w-screen-sm">

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +22,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/book/create', function () {
         return view('book/create');
     });
-    Route::post('/book', 'App\Http\Controllers\BookController@store');
+    Route::post('/book', [ BookController::class, 'store']);
+
+    Route::get('/book/{book:slug}/edit', [ BookController::class, 'edit']);
+    Route::patch('/book/{book:slug}', [ BookController::class, 'update']);
 });
 
-Route::get('/book/{book:slug}', 'App\Http\Controllers\BookController@show')->name('book');
+Route::get('/book/{book:slug}', [ BookController::class, 'show'])->name('book');
 
-Route::get('/all', 'App\Http\Controllers\BookController@index')->name('all');
+Route::get('/all', [ BookController::class, 'index'])->name('all');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

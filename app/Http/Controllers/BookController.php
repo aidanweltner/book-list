@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class BookController extends Controller
 {
@@ -38,21 +39,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        $customMessages = [
-            '*.review.required' => 'A review is required',
-        ];
-
         $attributes = $request->validate([
             'title'             => 'required|unique:books',
             'author'            => 'required',
             'description'       => 'required|max:280',
             'completed'         => 'required|date',
-            'rating'            => 'required|numeric|max:5',
-            'book-trixFields'   => 'array|required',
-            '*.review'          => 'required',
+            'rating'            => 'required|numeric|max:5|min:0',
+            'review'            => 'required',
             'purchase'          => 'nullable|url',
             'amazon'            => 'nullable|url',
-        ], $customMessages);
+        ]);
 
         $slug = Str::slug($attributes['title'], '-');
 
@@ -64,7 +60,7 @@ class BookController extends Controller
             'image'         => 'https://source.unsplash.com/featured/?sig='.strval(rand(100, 400)).'&book',
             'completed'     => $attributes['completed'],
             'rating'        => $attributes['rating'],
-            'review'        => $attributes['book-trixFields']['review'],
+            'review'        => $attributes['review'],
             'purchase'      => $attributes['purchase'],
             'amazon'        => $attributes['amazon'],
         ]);
@@ -91,7 +87,7 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('book.edit', [ 'book' => $book ]);
     }
 
     /**
@@ -103,7 +99,23 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $attributes = $request->validate([
+            'title'             => [
+                'required',
+                Rule::unique('books')->ignore($book),
+            ],
+            'author'            => ['required'],
+            'description'       => ['required','max:280'],
+            'completed'         => ['required','date'],
+            'rating'            => ['required','numeric','max:5','min:0'],
+            'review'            => ['required'],
+            'purchase'          => ['nullable','url'],
+            'amazon'            => ['nullable','url'],
+        ]);
+
+        $book->update($attributes);
+
+        return redirect($book->path());
     }
 
     /**
