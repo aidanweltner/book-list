@@ -40,6 +40,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
+            'image'             => 'required|image',
             'title'             => 'required|unique:books',
             'author'            => 'required',
             'description'       => 'required|max:280',
@@ -50,20 +51,11 @@ class BookController extends Controller
             'amazon'            => 'nullable|url',
         ]);
 
-        $slug = Str::slug($attributes['title'], '-');
+        $attributes['slug'] = Str::slug($attributes['title'], '-');
 
-        Book::create([
-            'slug'          => $slug,
-            'title'         => $attributes['title'],
-            'author'        => $attributes['author'],
-            'description'   => $attributes['description'],
-            'image'         => 'https://source.unsplash.com/featured/?sig='.strval(rand(100, 400)).'&book',
-            'completed'     => $attributes['completed'],
-            'rating'        => $attributes['rating'],
-            'review'        => $attributes['review'],
-            'purchase'      => $attributes['purchase'],
-            'amazon'        => $attributes['amazon'],
-        ]);
+        $attributes['image'] = request('image')->store('book_featured_images');
+
+        Book::create($attributes);
 
         return redirect()->route('all');
     }
@@ -100,6 +92,7 @@ class BookController extends Controller
     public function update(Request $request, Book $book)
     {
         $attributes = $request->validate([
+            'image'             => ['nullable', 'image' ],
             'title'             => [
                 'required',
                 Rule::unique('books')->ignore($book),
@@ -112,6 +105,12 @@ class BookController extends Controller
             'purchase'          => ['nullable','url'],
             'amazon'            => ['nullable','url'],
         ]);
+
+        if (request('image')) {
+            $attributes['image'] = request('image')->store('book_featured_images');
+        } else {
+            $attributes['image'] = $book->image;
+        }
 
         $book->update($attributes);
 

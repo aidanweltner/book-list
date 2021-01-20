@@ -3,7 +3,7 @@
     <div class="lg:col-span-1 w-full h-full min-h-60 relative">
       <a href="/book/{{ $book->slug }}">
         <div class="absolute inset-0">
-          <img src="{{ $book->image ??'https://source.unsplash.com/featured/?book'}}" alt="Book" class="object-cover h-full w-full rounded-md">
+          <img src="{{ asset($book->image) ??'https://source.unsplash.com/featured/?book'}}" alt="{{ $book->title.' by '.$book->author }}" class="object-cover h-full w-full rounded-md">
         </div>
       </a>
     </div>

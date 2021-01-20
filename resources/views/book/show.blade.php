@@ -3,7 +3,7 @@
     <header>
       <div class="w-full h-hscreen relative">
         <div class="absolute inset-0">
-          <img src="{{ $book->image ??'https://source.unsplash.com/featured/?book'}}" alt="Book" class="object-cover h-full w-full rounded-md">
+          <img src="{{ asset($book->image) ??'https://source.unsplash.com/featured/?book'}}" alt="{{ $book->title.' by '.$book->author }}" class="object-cover h-full w-full rounded-md">
         </div>
       </div>
       <div class="flex flex-col justify-between px-2 py-4 lg:px-4 lg:py-12">

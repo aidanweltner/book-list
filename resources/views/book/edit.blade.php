@@ -11,6 +11,19 @@
     <form method="POST" action="/book/{{ $book->slug }}">
       @csrf
       @method('PATCH')
+      
+      <div class="max-w-screen-sm">
+        <x-label :value="__('Current Image')" />
+        <img src="{{ asset($book->image) }}" alt="{{ $book->title.' by '.$book->author }}" class="h-24 mt-1 rounded-sm">
+      </div>
+
+      <div class="mt-2 max-w-screen-sm">
+        <x-label for="image" :value="__('New Image')" />
+        <x-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" autofocus />
+        @error('image')
+          <p class="text-yellow-900">{{ $message }}</p>
+        @enderror
+      </div>
 
       <div class="mt-2 max-w-screen-sm">
         <x-label for="title" :value="__('Book Title')" />
