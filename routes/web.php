@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/book/{book:slug}/edit', [ BookController::class, 'edit']);
     Route::patch('/book/{book:slug}', [ BookController::class, 'update']);
+    Route::delete('/book/{book:slug}', [ BookController::class, 'destroy']);
 });
 
 Route::get('/book/{book:slug}', [ BookController::class, 'show'])->name('book');
