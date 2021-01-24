@@ -17,7 +17,7 @@ class BookController extends Controller
     public function index()
     {
         return view('all', [
-            'books' => Book::all()->sortByDesc('completed'),
+            'books' => Book::orderByDesc('completed')->paginate(8),
         ]);
     }
 
@@ -54,6 +54,8 @@ class BookController extends Controller
         $attributes['slug'] = Str::slug($attributes['title'], '-');
 
         $attributes['image'] = request('image')->store('book_featured_images');
+
+        $attributes['user_id'] = auth()->id();
 
         Book::create($attributes);
 

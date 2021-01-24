@@ -34,4 +34,6 @@
       @endforelse
   </ul>
 
+  {{ $books->link() }}
+
 </x-app-layout>

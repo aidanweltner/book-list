@@ -19,6 +19,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'is_featured',
+        'is_admin',
         'password',
     ];
 
@@ -40,4 +42,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function admin()
+    {
+        if ($this->is_admin) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public function featured()
+    {
+        if ($this->is_featured) {
+            return true;
+        }
+
+        return false;
+    }
 }
