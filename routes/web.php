@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/book/{book:slug}/edit', [ BookController::class, 'edit']);
     Route::patch('/book/{book:slug}', [ BookController::class, 'update']);
     Route::delete('/book/{book:slug}', [ BookController::class, 'destroy']);
+
+    Route::get('/profile/{profile:id}/edit', [ ProfileController::class, 'edit']);
+    Route::patch('/profile/{profile:id}', [ProfileController::class, 'update']);
 });
 
 Route::get('/book/{book:slug}', [ BookController::class, 'show'])->name('book');
