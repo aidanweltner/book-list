@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +12,8 @@ class HomeController extends Controller
     {
         $books = Book::orderByDesc('completed')->paginate(4);
 
-        $profile = null;
+        $profile = Profile::where('is_home', 1)->get()[0];
 
-        /* dd([$books, $profile ]);
- */
         return view('home', [
             'books'     => $books,
             'profile'   => $profile,

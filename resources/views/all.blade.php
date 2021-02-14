@@ -24,7 +24,7 @@
       @endauth
   </div>
   
-  <ul class="space-y-4 lg:space-y-6 my-4 lg:my-6">
+  <ul class="space-y-4 lg:space-y-6 my-4 lg:my-6 md:gap-4 md:space-y-0 md:grid md:grid-cols-2 lg:block">
       @forelse ($books as $book)
           @include('book')
       @empty
@@ -34,6 +34,6 @@
       @endforelse
   </ul>
 
-  {{ $books->link() }}
+  {{ $books->links() }}
 
 </x-app-layout>
