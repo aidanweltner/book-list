@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="mb-12">
         <div class="rounded-full h-36 w-36 mb-4">
-            <img src="https://source.unsplash.com/featured/?girl" alt="Girl" class="rounded-full object-cover h-full w-full">
+            <img src="{{ asset($profile->image) }}" alt="Girl" class="rounded-full object-cover h-full w-full">
         </div>
         <div class="mb-4 flex justify-between items-center">
             <div>

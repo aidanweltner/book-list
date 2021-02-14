@@ -16,7 +16,8 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->boolean('is_home')->default(false);
+            $table->boolean('is_home')->default(true);
+            $table->text('image')->default('https://source.unsplash.com/featured/?girl');
             $table->text('h1');
             $table->text('h2')->nullable();
             $table->longText('body')->nullable();

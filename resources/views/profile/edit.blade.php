@@ -8,26 +8,26 @@
       </div>
   </div>
   <div>
-    <form method="POST" action="/profile/{{ $profile->id }}">
+    <form method="POST" action="/profile/{{ $profile->id }}" enctype="multipart/form-data">
       @csrf
       @method('PATCH')
       
       <div class="max-w-screen-sm">
         <x-label :value="__('Current Image')" />
-        <img src="https://source.unsplash.com/featured/?girl" alt="{{ $profile->h1 }}" class="h-24 mt-1 rounded-sm">
+        <img src="{{ asset($profile->image) }}" alt="{{ $profile->h1 }}" class="h-36 mt-1 rounded-sm">
       </div>
 
-      {{-- <div class="mt-2 max-w-screen-sm">
+      <div class="mt-2 max-w-screen-sm">
         <x-label for="image" :value="__('New Image')" />
-        <x-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('image')" autofocus />
+        <x-input id="image" class="block mt-1 w-full" type="file" name="image" autofocus />
         @error('image')
           <p class="text-yellow-900">{{ $message }}</p>
         @enderror
-      </div> --}}
+      </div>
 
       <div class="mt-2 max-w-screen-sm">
         <x-label for="h1" :value="__('Top Heading')" />
-        <x-input id="h1" class="block mt-1 w-full" type="text" name="h1" :value="$profile->h1" autofocus />
+        <x-input id="h1" class="block mt-1 w-full" type="text" name="h1" :value="old('h1')?old('h1'):$profile->h1" autofocus />
         @error('h1')
           <p class="text-yellow-900">{{ $message }}</p>
         @enderror
@@ -35,7 +35,7 @@
 
       <div class="mt-2 max-w-screen-sm">
         <x-label for="h2" :value="__('Bottom Heading')" />
-        <x-input id="h2" class="block mt-1 w-full" type="text" name="h2" :value="$profile->h2" autofocus />
+        <x-input id="h2" class="block mt-1 w-full" type="text" name="h2" :value="old('h2')?old('h2'):$profile->h2" autofocus />
         @error('h2')
           <p class="text-yellow-900">{{ $message }}</p>
         @enderror
@@ -45,7 +45,7 @@
         <x-label for="body" :value="__('Profile Body Content')" />
         <textarea
           class="block mt-1 w-full"
-          name="body" id="body" rows="7"autofocus>{{ $profile->body }}</textarea>
+          name="body" id="body" rows="7"autofocus>{{ old('body') ? old('body') : $profile->body }}</textarea>
         @error('body')
           <p class="text-yellow-900">{{ $message }}</p>
         @enderror

@@ -69,7 +69,24 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //
+        $attributes = $request->validate([
+            'image'      => 'mimes:jpeg,png,jpg',
+            'h1'         => 'required',
+            'h2'         => 'required',
+            'body'       => 'required',
+        ]);
+
+        if (request('image')) {
+            $attributes['image'] = request('image')->store('profiles');
+        }
+
+        $attributes['user_id'] = auth()->id();
+
+        $attributes['is_home'] = $profile->is_home;
+
+        $profile->update($attributes);
+
+        return redirect()->route('home');
     }
 
     /**
