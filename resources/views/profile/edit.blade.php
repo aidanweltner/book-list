@@ -14,7 +14,7 @@
       
       <div class="max-w-screen-sm">
         <x-label :value="__('Current Image')" />
-        <img src="{{ asset($profile->image) }}" alt="{{ $profile->h1 }}" class="h-36 mt-1 rounded-sm">
+        <img src="{{ asset($profile->image) ? asset($profile->image) : 'https://source.unsplash.com/featured/?girl' }}" alt="{{ $profile->h1 }}" class="h-36 mt-1 rounded-sm">
       </div>
 
       <div class="mt-2 max-w-screen-sm">

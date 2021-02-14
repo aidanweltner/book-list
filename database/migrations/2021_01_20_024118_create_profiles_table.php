@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->boolean('is_home')->default(true);
-            $table->text('image')->default('https://source.unsplash.com/featured/?girl');
+            $table->text('image')->nullable();
             $table->text('h1');
             $table->text('h2')->nullable();
             $table->longText('body')->nullable();
