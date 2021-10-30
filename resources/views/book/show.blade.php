@@ -1,4 +1,8 @@
 <x-app-layout>
+  <x-slot name="head">
+    {{ Breadcrumbs::view('breadcrumbs::json-ld', 'book', $book) }}
+  </x-slot>
+
   <x-slot name="breadcrumb">
     {{ Breadcrumbs::render('book', $book) }}
   </x-slot>

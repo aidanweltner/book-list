@@ -16,6 +16,10 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+    @if ( isset($head) )
+        {{ $head }}
+    @endif
 </head>
 
 <body class="font-sans antialiased bg-yellow-100">
