@@ -1,4 +1,8 @@
 <x-app-layout>
+  <x-slot name="breadcrumb">
+    {{ Breadcrumbs::render('books') }}
+  </x-slot>
+
   <div class="mb-12 flex items-center justify-between">
     <div class="text-2xl lg:text-4xl font-bold text-gray-900 inline-flex items-center">
       <h1 class="">Reading List</h1>
