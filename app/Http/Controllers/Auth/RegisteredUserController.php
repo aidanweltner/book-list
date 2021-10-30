@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\Models\Profile;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,24 +31,24 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
-        ]);
+        $validated = $request->validated();
+
+        if ( User::first() ) {
+            return redirect()-route( 'access-denied' );
+        }
 
         Auth::login($user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'name' => $validated->name,
+            'email' => $validated->email,
+            'password' => Hash::make($validated->password),
         ]));
 
         Profile::create([
             'user_id'   => $user->id,
             'is_home'   => $user->id == 1 ? true : false,
-            'h1'        => $request->name,
+            'h1'        => $validated->name,
             'h2'        => 'Subtitle',
             'body'      => "<p>No profile content to display.</p>",
         ]);
