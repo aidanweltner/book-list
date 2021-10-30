@@ -20,8 +20,10 @@
 
 <body class="font-sans antialiased bg-yellow-100">
     <div class="">
-        <!-- Page Header -->
-        <header class="max-w-screen-lg mx-auto px-2 sm:px-6 lg:px-8 pt-8 lg:pt-16">{{ $breadcrumb }}</header>
+        @if ( isset($breadcrumb) )
+            <!-- Page Header -->
+            <header class="max-w-screen-lg mx-auto px-2 sm:px-6 lg:px-8 pt-8 lg:pt-16">{{ $breadcrumb }}</header>
+        @endif 
 
         <!-- Page Content -->
         <main class="max-w-screen-lg mx-auto min-h-screen px-2 sm:px-6 lg:px-8 py-8 lg:py-16">
