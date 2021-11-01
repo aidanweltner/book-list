@@ -14,7 +14,7 @@
       
       <div class="max-w-screen-sm">
         <x-label :value="__('Current Image')" />
-        <img src="{{ asset($book->image) }}" alt="{{ $book->title.' by '.$book->author }}" class="h-24 mt-1 rounded-sm">
+        <img src="{{ Storage::url($book->image) }}" alt="{{ $book->title.' by '.$book->author }}" class="h-24 mt-1 rounded-sm">
       </div>
 
       <div class="mt-2 max-w-screen-sm">

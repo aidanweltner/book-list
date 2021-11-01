@@ -11,7 +11,7 @@
     <header>
       <div class="w-full h-hscreen relative">
         <div class="absolute inset-0">
-          <img src="{{ asset($book->image) ??'https://source.unsplash.com/featured/?book'}}"
+          <img src="{{ Storage::url($book->image) ?? 'https://source.unsplash.com/featured/?book'}}"
             alt="{{ $book->title.' by '.$book->author }}" class="object-cover h-full w-full rounded-md">
         </div>
       </div>

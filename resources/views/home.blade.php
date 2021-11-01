@@ -9,7 +9,7 @@
 
   <div class="mb-12">
     <div class="rounded-full h-36 w-36 mb-4">
-      <img src="{{ asset($profile->image) ? asset($profile->image) : 'https://source.unsplash.com/featured/?girl' }}"
+      <img src="{{ Storage::url($profile->image) ? Storage::url($profile->image) : 'https://source.unsplash.com/featured/?girl' }}"
         alt="{{ $profile->h1 }}" class="rounded-full object-cover h-full w-full">
     </div>
     <div class="mb-4 flex justify-between items-center">
